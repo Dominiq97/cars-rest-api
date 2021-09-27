@@ -7,7 +7,6 @@ from django.core.management.base import BaseCommand
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        """Handle the command"""
         self.stdout.write('Waiting for database...')
         db_conn = None
         while not db_conn:
