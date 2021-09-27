@@ -1,5 +1,4 @@
 FROM python:3.9.7-alpine
-MAINTAINER Dominic Catana
 
 ENV PYTHONUNBUFFERED 1
 
