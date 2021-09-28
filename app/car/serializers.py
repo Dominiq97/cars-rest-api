@@ -31,3 +31,11 @@ class CarPostSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return models.CarManager.create_car(**validated_data)
+
+class PopularSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Car
+        fields = ('id','make', 'model','rates_number')
+
+
+

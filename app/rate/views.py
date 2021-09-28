@@ -20,15 +20,14 @@ class RateViews(APIView):
         if serializer.is_valid():
             serializer.save()
             car = Car.objects.get(id = request.data['car_id'])
-            print(car)
             query = Rate.objects.filter(car_id = car.id)
-            print(query)
             sum = 0
             for i in query:
                 sum+=i.rating
             val = ("{:.1f}".format(sum/len(query)))
             car.avg_rating = val
-            car.save(update_fields=['avg_rating'])
+            car.no_rating = car.no_rating + 1
+            car.save(update_fields=['avg_rating','no_rating'])
             return Response({ "rates": serializer.data}, status=status.HTTP_200_OK)
         else:
             return Response({ "rates": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)

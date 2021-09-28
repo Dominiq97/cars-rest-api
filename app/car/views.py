@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from core.models import Car
-from .serializers import CarSerializer
+from .serializers import CarSerializer, PopularSerializer
 from core.models import Rate, Car
 
 from car import serializers
@@ -32,3 +32,9 @@ class CarViews(APIView):
         car = get_object_or_404(Car, id=id)
         car.delete()
         return Response({"status": "success", "data": "Car Deleted"})
+
+class PopularView(APIView):
+    def get(self, request):
+        cars = Car.objects.order_by('-rates_number')
+        serializer = PopularSerializer(cars, many=True)
+        return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
