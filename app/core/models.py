@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-
+from django.core.validators import MinValueValidator, MaxValueValidator
+from django.db.models.deletion import CASCADE
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -26,6 +27,16 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     objects = UserManager()
     USERNAME_FIELD = 'email'
+
+class Car(models.Model):
+    make =  models.CharField(max_length=255)
+    model = models.CharField(max_length=255)
+    rates_number = models.IntegerField(default=0)
+
+class Rate(models.Model):
+    rating = models.IntegerField(validators=[MinValueValidator(1),
+                                       MaxValueValidator(5)])
+    car_id = models.ForeignKey(Car, on_delete=models.CASCADE)
 
     
 
