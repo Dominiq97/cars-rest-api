@@ -1,34 +1,17 @@
 from rest_framework import viewsets, mixins
-from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from django.core.exceptions import ObjectDoesNotExist
-from django.http.response import Http404, JsonResponse
+from django.shortcuts import get_object_or_404
+from rest_framework.views import APIView
 from core.models import Car
-
+from .serializers import CarSerializer
 from core.models import Rate, Car
 
 from car import serializers
 
-class RateViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
-    queryset = Rate.objects.all()
-    serializer_class = serializers.RateSerializer
-
-    def get_queryset(self):
-        return self.queryset.order_by('rating')
-
 class CarsViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
     queryset = Car.objects.all()
     serializer_class = serializers.CarSerializer
-
-from django.shortcuts import get_object_or_404
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from .serializers import CarSerializer
-from core.models import Car
-
 
 class CarViews(APIView):
 

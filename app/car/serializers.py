@@ -3,17 +3,11 @@ from core.models import Rate, Car
 from core import models
 import requests,json;
 
-class RateSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Rate
-        fields = ('car_id', 'rating')
-        read_only_fields = ('id',)
 
 class CarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Car
-        fields = ['id','make', 'model']
+        fields = ['id','make', 'model','avg_rating']
 
     def validate(self, attrs):
         url = 'https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/'+attrs['make']+'?format=json'

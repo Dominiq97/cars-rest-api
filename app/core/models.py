@@ -40,9 +40,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Car(models.Model):
     make =  models.CharField(max_length=255)
     model = models.CharField(max_length=255)
-    rates_number = models.IntegerField(default=0)
+    avg_rating = models.FloatField(default=0)
     def __str__(self):
         return self.make
+
+    
 
 class Rate(models.Model):
     rating = models.IntegerField(validators=[MinValueValidator(1),
