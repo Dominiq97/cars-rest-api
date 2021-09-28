@@ -5,7 +5,6 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from core.models import Car
 from .serializers import CarSerializer, PopularSerializer
-from core.models import Rate, Car
 
 from car import serializers
 

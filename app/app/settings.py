@@ -29,8 +29,6 @@ INSTALLED_APPS = [
     'core',
     'car',
     'rate',
-
-
 ]
 
 MIDDLEWARE = [
@@ -121,5 +119,3 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-AUTH_USER_MODEL = 'core.User'

@@ -9,7 +9,7 @@ from rate import serializers
 
 class RateViews(APIView):
 
-    def get(self, request, id=None):
+    def get(self):
         rates = Rate.objects.all()
         serializer = RateSerializer(rates, many=True)
         return Response({ "rates": serializer.data}, status=status.HTTP_200_OK)
@@ -26,8 +26,9 @@ class RateViews(APIView):
                 sum+=i.rating
             val = ("{:.1f}".format(sum/len(query)))
             car.avg_rating = val
-            car.no_rating = car.no_rating + 1
-            car.save(update_fields=['avg_rating','no_rating'])
+            car.rates_number = car.rates_number + 1
+            car.save(update_fields=['avg_rating','rates_number'])
             return Response({ "rates": serializer.data}, status=status.HTTP_200_OK)
         else:
             return Response({ "rates": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+

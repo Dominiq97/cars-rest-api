@@ -3,22 +3,6 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db.models.deletion import CASCADE
 
-class UserManager(BaseUserManager):
-    def create_user(self, email, password=None, **extra_fields):
-        if not email:
-            raise ValueError('A user should have an email')
-        user = self.model(email=self.normalize_email(email), **extra_fields)
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-
-    def create_superuser(self, email, password):
-        user = self.create_user(email, password)
-        user.is_staff = True
-        user.is_superuser = True
-        user.save(using=self._db)
-        return user
-
 class CarManager():
     def create_car(make, model):
         if not make:
@@ -28,14 +12,6 @@ class CarManager():
         car = Car(make=make,model=model)
         car.save()
         return car
-
-class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(max_length=255, unique=True)
-    name = models.CharField(max_length=255)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-    objects = UserManager()
-    USERNAME_FIELD = 'email'
 
 class Car(models.Model):
     make =  models.CharField(max_length=255)
