@@ -19,6 +19,15 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+class CarManager():
+    def create_car(make, model):
+        if not make:
+            raise ValueError('A car should have an make')
+        if not model:
+            raise ValueError('A car should have an model')
+        car = Car(make=make,model=model)
+        car.save()
+        return car
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
@@ -32,11 +41,16 @@ class Car(models.Model):
     make =  models.CharField(max_length=255)
     model = models.CharField(max_length=255)
     rates_number = models.IntegerField(default=0)
+    def __str__(self):
+        return self.make
 
 class Rate(models.Model):
     rating = models.IntegerField(validators=[MinValueValidator(1),
                                        MaxValueValidator(5)])
     car_id = models.ForeignKey(Car, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.rating)
 
     
 
