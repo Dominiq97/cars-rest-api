@@ -13,7 +13,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='foo')
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'cars-rest-api.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'cars-rest-apis.herokuapp.com']
 
 
 #
