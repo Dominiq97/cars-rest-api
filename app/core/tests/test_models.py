@@ -6,6 +6,7 @@ from core import models
 def sample_car( make='VW', model='Polo'):
     return models.CarManager.create_car(make, model)
 
+
 class ModelTests(TestCase):
 
     def test_rate_str(self):
