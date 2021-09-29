@@ -1,7 +1,13 @@
 from rest_framework import serializers
-from core.models import Rate, Car
-from core import models
-import requests,json;
+from restapi.models import Car, Rate, CarManager
+import requests,json
+
+
+class RateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Rate
+        fields = ('car_id', 'rating')
 
 
 class CarSerializer(serializers.ModelSerializer):
@@ -30,12 +36,9 @@ class CarPostSerializer(serializers.ModelSerializer):
         fields = ('id','make', 'model')
 
     def create(self, validated_data):
-        return models.CarManager.create_car(**validated_data)
+        return CarManager.create_car(**validated_data)
 
 class PopularSerializer(serializers.ModelSerializer):
     class Meta:
         model = Car
         fields = ('id','make', 'model','rates_number')
-
-
-

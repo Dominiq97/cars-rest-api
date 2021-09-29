@@ -1,5 +1,6 @@
 import os
-import django_heroku
+import dj_database_url
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -8,12 +9,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0lv*c@3h6luk0m$9s79xb^si&58&73cr@fxiike#)*nq=afuoo'
+SECRET_KEY = os.environ.get('SECRET_KEY', default='foo')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'cars-restapi.herokuapp.com']
+
+#'0lv*c@3h6luk0m$9s79xb^si&58&73cr@fxiike#)*nq=afuoo'
 
 
 # Application definition
@@ -26,9 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'core',
-    'car',
-    'rate',
+    'restapi',
 ]
 
 MIDDLEWARE = [
@@ -68,13 +68,14 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'HOST': os.environ.get('DB_HOST'),
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASS'),
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'sqlite3.db',                       # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+# DATABASE_URL = os.environ.get('DATABASE_URL')
+# db_from_env = dj_database_url.config(default=DATABASE_URL, conn_max_age=500, ssl_require=True)
+# DATABASES['default'].update(db_from_env)
 
 
 # Password validation
@@ -121,6 +122,7 @@ REST_FRAMEWORK = {
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-django_heroku.settings(locals())
