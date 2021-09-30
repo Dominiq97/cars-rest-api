@@ -15,7 +15,7 @@ Dominic <strong>Catana</strong><br />
 
 ```
 $ git clone https://github.com/Dominiq97/cars-rest-api.git
-$ cd sample-django-app
+$ cd cars-rest-api
 ```
 2.a Create python virtual environment and activate it (Windows)
 ```
@@ -33,11 +33,11 @@ pip install -r requirements.txt
 ```
 4. Migrate the database
 ```
-$ (env) python manage.py migrate
+$ (env) python cars-rest-api/manage.py migrate
 ```
 5. Run the server and launch the app on https://127.0.0.1:8000
 ```
-$ (env) python manage.py runserver
+$ (env) python cars-rest-api/manage.py runserver
 ```
 
 Project Link: [https://github.com/Dominiq97/cars-rest-api](https://github.com/Dominiq97/cars-rest-api)
