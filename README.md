@@ -38,6 +38,10 @@ $ (env) python cars-rest-api/manage.py migrate
 ```
 $ (env) python cars-rest-api/manage.py runserver
 ```
+6. Run the tests 
+```
+$ (env) python cars-rest-api/manage.py test restapi
+```
 
 Project Link: [https://github.com/Dominiq97/cars-rest-api](https://github.com/Dominiq97/cars-rest-api)
 
