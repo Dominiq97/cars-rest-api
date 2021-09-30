@@ -3,11 +3,3 @@ __pycache__
 env/
 sqlite3.db
 db.sqlite3
-
-# pyenv
-Scripts/
-Include/
-Lib/
-pyvenv.cfg
-.env
-
