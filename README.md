@@ -3,14 +3,13 @@
 
   <h3 align="center">Cars REST API application</h3>
 
-[![V7.9.3 Python](https://img.shields.io/badge/python-v7.9.3-green)]()  ![](https://img.shields.io/badge/Django-2.1.3-green) [![](https://img.shields.io/badge/postgresql-12-red)]() ![](https://img.shields.io/badge/docker-blue)
+[![V3.7.9 Python](https://img.shields.io/badge/python-v3.7.9-green)]()  ![](https://img.shields.io/badge/Django-2.1.3-green) [![](https://img.shields.io/badge/postgresql-12-red)]() ![](https://img.shields.io/badge/docker-blue)
 
 This project is made by: <br>
 Dominic <strong>Catana</strong><br />
 <strong>catanadominic@gmail.com</strong><br>
-<strong>+40 723 142 712</strong><br />
 
-#### Prerequisites
+#### Installation - Python Virtual Environment
 0. Install postgresql 12, python 7.9
 
 ```
@@ -43,6 +42,25 @@ $ (env) python cars-rest-api/manage.py runserver
 Project Link: [https://github.com/Dominiq97/cars-rest-api](https://github.com/Dominiq97/cars-rest-api)
 
 Project Live: [https://cars-rest-apis.herokuapp.com](https://cars-rest-apis.herokuapp.com)
+
+#### Installation - Docker
+
+0. [Install Docker](https://docs.docker.com/get-docker/)
+
+1. Clone the repository
+```
+$ git clone https://github.com/Dominiq97/cars-rest-api.git
+$ cd cars-rest-api
+```
+2. Build the docker image:
+```
+docker-compose build
+```
+3. Run the project locally and launch the app on https://127.0.0.1:8000:
+```
+docker-compose up
+```
+
 
 
 
