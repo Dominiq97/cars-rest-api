@@ -26,8 +26,13 @@ class CarSerializer(serializers.ModelSerializer):
             lower_str1 = i['Model_Name'].lower()
             if lower_str1==lower_str2:
                 c = True
+        cars_dup = Car.objects.filter(make=attrs['make'].lower().capitalize(),model=attrs['model'].lower().capitalize())
         if c == False or len(result)==0:
-            raise serializers.ValidationError('Wrong Make or Model')
+            raise serializers.ValidationError('Wrong Make or Model!')
+        if len(cars_dup)>1:
+            raise serializers.ValidationError('Duplication Error!')
+        attrs['make'] = attrs['make'].lower().capitalize()
+        attrs['model'] = attrs['model'].lower().capitalize()
         return attrs
 
 class CarPostSerializer(serializers.ModelSerializer):
